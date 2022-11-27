@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="images/logo.png">
+  <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./images/styleCalcular.css">
+  <link rel="manifest" href="manifest.webmanifest">
+  <script src="app.js"></script>
+  <title>FoodPet | Calcular</title>
+</head>
+<body>
+    <div class="">
+        <ul class="nav justify-content-end navbar-light" style="padding-top: 15px; padding-bottom: 15px;">
+            <li class="nav-item">
+                <a class="nav-link active" style="color: white!important;" aria-current="page" href="index.html">Inicio</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="color: white!important;" href="calcular.html">Calcular</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="color: white!important;" href="recomendaciones.html">Recomendaciones</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="color: white!important;" href="diversion.html">Diversión</a>
+            </li>
+        </ul>
+    </div>
+    <div class="inicio" >
+        <div class="container mt-5">
+            <div class="row align-items-start">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <!--<form class="row g-3 needs-validation" novalidate>
+                                <div>
+                                  <label for="name" class="form-label">Nombre</label>
+                                  <input type="text" class="form-control" id="name" value="Mark" required>
+                                  <div class="valid-feedback">
+                                    Completado
+                                  </div>
+                                </div>
+                                <div>
+                                  <label for="weight" class="form-label">Peso</label>
+                                  <input type="text" class="form-control" id="weight value="Otto" required>
+                                  <div class="valid-feedback">
+                                    Completado
+                                  </div>
+                                </div>
+                                <div>
+                                    <label for="ageList" class="form-label">Edad de tu perro</label>
+                                    <select class="form-select" id="ageList" required>
+                                      <option selected disabled value="">Seleccionar la edad de tu perro</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                      Porfavor selecciona una opción.
+                                    </div>
+                                  </div>
+                                <div class="col-12">
+                                  <button class="btn btn-primary" id="calcularPet" type="button">Calcular</button>
+                                </div>
+                              </form>-->
+                            <form class="row g-3 needs-validation" novalidate>
+                                <div>
+                                  <label for="name" class="form-label">Nombre de tu perro</label>
+                                  <input type="text" class="form-control"  id="name" value="Mark" required>
+                                  <div class="valid-feedback">
+                                    Looks good!
+                                  </div>
+                                </div>
+                                <div>
+                                  <label for="weight" class="form-label">Peso de tu perro</label>
+                                  <input type="number" class="form-control" id="weight" value="Otto" required>
+                                  <div class="valid-feedback">
+                                    Looks good!
+                                  </div>
+                                </div>
+                                <div>
+                                  <label for="ageList" class="form-label">Edad de tu perro</label>
+                                  <select class="form-select" id="ageList" required>
+                                    <option selected disabled value="">Seleccionar la edad de tu perro</option>
+                                  </select>
+                                  <div class="invalid-feedback">
+                                    Please select a valid state.
+                                  </div>
+                                </div>
+                                <button type="button" class="btn btn-primary" id="calcularPet">Calcular</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col ">
+                    <div class="card">
+                        <div class="card-body justify-content-around">
+                            <p>Calculando ...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let ageSelect =[
+            "8 semanas",
+            "9 semanas a 3 meses",
+            "4 a 6 meses",
+            "Más de 6 meses"
+        ];
+        const ageList = document.getElementById("ageList");
+        ageSelect.forEach(function(elemento,index, array) {
+            ageList.innerHTML += `<option id="age">${elemento}</option>`;
+        });
+
+    </script>
+    <script src="js/logic.js"></script>
+    <script src="js/formLogic.js"></script>
+    <script src="./assets/bootstrap/js/bootstrap.js"></script>
+    <script src="./assets/bootstrap/js/bootstrap.bundle.js"></script>
+</body>
+</html>

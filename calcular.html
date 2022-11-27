@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="images/logo.png">
+  <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./images/styleCalcular.css">
+  <link rel="manifest" href="manifest.webmanifest">
+  <script src="app.js"></script>
+  <title>FoodPet | Calcular</title>
+</head>
+<body>
+  <div class="">
+      <ul class="nav justify-content-end navbar-light" style="padding-top: 15px; padding-bottom: 15px;">
+          <li class="nav-item">
+              <a class="nav-link active" style="color: white!important;" aria-current="page" href="index.html">Inicio</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" style="color: white!important;" href="calcular.html">Calcular</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" style="color: white!important;" href="recomendaciones.html">Recomendaciones</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" style="color: white!important;" href="diversion.html">Diversión</a>
+          </li>
+      </ul>
+  </div>
+  <div class="inicio" >
+    <div class="container mt-5">
+      <div class="row align-items-start">
+          <div class="col">
+              <div class="card">
+                  <div class="card-body">
+                      <form class="row g-3 needs-validation" novalidate>
+                        <div class="col-md-6">
+                          <label for="name" class="form-label">Nombre de tu mascota</label>
+                          <input type="text" class="form-control" id="name" required>
+                          <div class="invalid-feedback">
+                            Por favor ingresa un nombre
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="weight" class="form-label">Peso de tu mascota</label>
+                          <input type="number" step="any" class="form-control" id="weight" required>
+                          <div class="invalid-feedback">
+                            Por favor ingresa un peso
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                          <label for="ageListclass="form-label">Edad de tu perro</label>
+                          <select class="form-select" id="ageList" required>
+                            <option selected disabled value="">Seleccionar la edad de tu perro</option>
+                          </select>
+                          <div class="invalid-feedback">
+                            Por favor selecciona una edad.
+                          </div>
+                        </div>
+                        <div class="col-12">
+                          <button class="btn btn-primary" id="calculate">Calcular</button>
+                        </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+          <div class="col ">
+              <div class="card">
+                  <div class="card-body ">
+                    <div class="text-center" id="content">
+                      <div id="loanding">
+                        
+                      </div
+                    </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
+    
+  <script>
+    let ageSelect =[
+        "8 semanas",
+        "9 semanas a 3 meses",
+        "4 a 6 meses",
+        "Más de 6 meses"
+    ];
+    const ageList = document.getElementById("ageList");
+    ageSelect.forEach(function(elemento,index, array) {
+        ageList.innerHTML += `<option id="age">${elemento}</option>`;
+    });
+    
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+      'use strict'
+
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.querySelectorAll('.needs-validation')
+
+      // Loop over them and prevent submission
+      Array.prototype.slice.call(forms)
+        .forEach(function (form) {
+          form.addEventListener('submit', function (event) {
+            if (!form.checkValidity()) {
+              event.preventDefault()
+              event.stopPropagation()
+              localStorage.removeItem('weight');
+              localStorage.removeItem('foodDay');
+            }
+            
+            form.classList.add('was-validated')
+          }, false)
+        })
+    })()
+    //Guardar los datos en LocalStorage
+    btnCalcular = document.getElementById("calculate");
+    btnCalcular.addEventListener('click', (e)=>{
+      localStorage.setItem("name", document.querySelector('#name').value);
+      localStorage.setItem("weight", document.querySelector('#weight').value);
+      localStorage.setItem("age", document.querySelector('#ageList').value);
+      
+    });
+    //Validar para mostrar el alimento
+    if(localStorage.getItem('weight') !== undefined && localStorage.getItem('weight')){
+      //Extraer nombre
+      const name = localStorage.getItem('name');
+      //Calcular 
+      const rest = localStorage.getItem('weight') * 0.025;
+      const foodDay = rest.toFixed(3);
+      localStorage.setItem("foodDay", foodDay);
+      console.log(foodDay);
+      //Mostrar resultado de calcular
+      const result = document.getElementById("content");
+      result.innerHTML += `<h4>${name}</h4>
+                            <p>Tiene que comer <strong>${foodDay}</strong> kilogramos de alimento al día.</p>
+                          <button class="btn btn-primary" type="submit" id="clearData">Borrar datos</button>`;
+      //Borrar datos en cache
+      deleteData = document.getElementById("clearData");
+      deleteData.addEventListener('click', (e) =>{
+        localStorage.removeItem('weight');
+        localStorage.removeItem('name');
+        localStorage.removeItem('age');
+        localStorage.removeItem('foodDay');
+        location.reload();
+      });
+    } else {
+      //Mostrar cargando...
+      const result = document.getElementById("content");
+      result.innerHTML += `<div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                          </div>
+                          <p>Calculando ...</p>`;
+    }
+
+  </script>
+  <script src="./assets/bootstrap/js/bootstrap.js"></script>
+  <script src="./assets/bootstrap/js/bootstrap.bundle.js"></script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="theme-color" content="#77a9e8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="images/logo.png">
+  <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet"  href="./images/styleInicio.css">
+  <link rel="manifest" href="manifest.webmanifest">
+  <script src="app.js"></script>
+  <title>FoodPet | Inicio</title>
+</head>
+<body>
+  <div>
+    <div>
+      <ul class="nav justify-content-end" style="padding-top: 15px; padding-bottom: 15px;">
+        <li class="nav-item">
+          <a class="nav-link active" style="color: white!important;" aria-current="page" href="index.html">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="color: white!important;" href="calcular.html">Calcular</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="color: white!important;" href="recomendaciones.html">Recomendaciones</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="color: white!important;" href="diversion.html">Diversión</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row text-center d-md-block" style="color: white!important;">
+      <div>
+      <h1 style="letter-spacing: 10px">Bienvenidos</h1>
+      <p>¿Estás list@ para conocer cuánta comida debe comer el miembro más fiel de tu familia?</p>
+      <a type="button" class="btn btn-primary" href="calcular.html">Ir a calcular</a>
+      </div>
+    </div>
+  </div>
+  <div class="d-grid gap-2 col-6 mx-auto" style="margin-top: 90px;">
+    <button class="btn btn-primary"  title="Instalar FootPet" id="instalarNotificaciones">Permitir notificaciones</button>
+    <button class="btn btn-primary"  id="instalar">Instalar FoodPet</button>
+  </div>
+  <script>
+    //Declarar variables
+    let eventPrompt;
+    let eventLocalStorage;
+    //Solicitud antes de la instalación por un usuario
+    window.addEventListener('beforeinstallprompt', function(e){
+        e.preventDefault();
+        eventPrompt = e;
+      });
+    //Validar el botón para instalar
+    if(localStorage.getItem('install') !== undefined && localStorage.getItem('install') === 'accepted'){
+      btnInstalar = document.getElementById("instalar");
+      btnInstalar.style.display= 'none';
+    } else {
+      btnInstalar = document.getElementById("instalar");
+      btnInstalar.addEventListener('click', (e)=>{
+      //Devuelve una promesa en cadena con los valores "aceptado" o "rechazado".
+      eventPrompt.prompt();
+      eventPrompt.userChoice.then((choiceResult)=>{
+        eventLocalStorage = choiceResult.outcome ;
+        //Guardar la variable al localStorage
+        localStorage.setItem("install", eventLocalStorage);
+        });
+      
+      });
+    }
+
+
+    //Notificaciones
+    let btnNotificaciones = document.getElementById("instalarNotificaciones");
+    btnNotificaciones.addEventListener('click', function(e){
+      Notification.requestPermission().then(function(result){
+        if(result === 'granted'){
+          randomNotificacion();
+        }
+      });
+    });
+    function randomNotificacion(){
+      let nTitle = "¿Ya paseaste a tu amigo fiel?";
+      let nbody = "Te invitamos a conocer los mejores lugares para llevarlo y además de algunas recomendaciones.";
+      let nImage = "./images/logo.png";
+      let options = {
+        body: nbody,
+        icon: nImage
+      }
+      let notif = new Notification(nTitle, options);
+      setTimeout(randomNotificacion,10000);
+    }
+  </script>
+  <script src="./assets/bootstrap/js/bootstrap.js"></script>
+  <script src="./assets/bootstrap/js/bootstrap.bundle.js"></script>
+</body>
+</html>
