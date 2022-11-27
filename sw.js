@@ -7,6 +7,17 @@ workbox.precaching.precacheAndRoute([
     'index.html',
     'calcular.html',
     'offline.html',
+    'app.js',
+    'sw.js',
+    'manifest.webmanifest',
+    'css/bootstrap.min.css',
+    'js/bootstrap.js',
+    'js/bootstrap.bundle.js',
+    'images/styleInicio.css',
+    'images/styleCalcular.css',
+    'images/logo.png',
+    'images/portada.jpeg',
+    'images/portadaCalcular.jpeg'
 ]);
 
 //Ruta de almacenamiento en caché en tiempo de ejecución 
