@@ -17,7 +17,8 @@ workbox.precaching.precacheAndRoute([
     'images/styleCalcular.css',
     'images/logo.png',
     'images/portada.jpeg',
-    'images/portadaCalcular.jpeg'
+    'images/portadaCalcular.jpeg',
+    'OneSignalSDKWorker.js'
 ]);
 
 //Ruta de almacenamiento en caché en tiempo de ejecución 
