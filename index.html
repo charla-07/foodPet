@@ -10,6 +10,15 @@
   <link rel="stylesheet"  href="./images/styleInicio.css">
   <link rel="manifest" href="manifest.webmanifest">
   <script src="app.js"></script>
+  <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+  <script>
+    window.OneSignal = window.OneSignal || [];
+    OneSignal.push(function() {
+      OneSignal.init({
+        appId: "89b1686d-527c-4402-be7c-64378174dce0",
+      });
+    });
+  </script>
   <title>FoodPet | Inicio</title>
 </head>
 <body>
